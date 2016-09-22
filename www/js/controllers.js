@@ -1,8 +1,22 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('PhotoCtrl', function($scope, $state) {
+    $scope.src = 'http://www.fillmurray.com/200/300';
+    
+    $scope.takePhoto = function(){
+        navigator.camera.getPicture(onSuccess, onFail,{destinationType: Camera.DestinationType.FILE_URI})
+    }
+     
+    function onSuccess(imgURI){
+        $scope.src = imgURI;
+        $state.reload();
+    }
+    function onFail(message) {
+        alert('Failed because: ' + message);
+    }
+})
 
-.controller('ChatsCtrl', function($scope, Chats) {
+.controller('LanguagesCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
