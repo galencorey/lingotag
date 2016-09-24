@@ -1,50 +1,42 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
+.factory('TagsFactory', function($http) {
+    
+    var TagsFactory = {};
+         
+    TagsFactory.getTags = function(img){
+         var url = 'https://api.clarifai.com/v1/tag/';
 
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
-  }];
+         return $http({
+               method: 'POST',
+               url: url,
+               headers: {
+                    Authorization: 'Bearer ' + secrets.Clarifai
+               },
+               data: {
+                    encoded_data: img
+               }
+         })
+         .then(function(response){
+               return response.data.results[0].result.tag.classes;
+          });
+    };
+         
+         
+    TagsFactory.translateTags = function(tags, lan){
+         
+         var tags = tags.join(', ');
+         var url = 'https://www.googleapis.com/language/translate/v2?';
+         url += 'key=' + secrets.Google;
+         url += '&q=' + tags;
+         url += '&source=en&target=es';
 
-  return {
-    all: function() {
-      return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
+         return $http.get(url)
+         .then(function(response){
+               return response.data.data.translations[0].translatedText.split(', ');
+          });
     }
-  };
+         
+    return TagsFactory;
+         
 });

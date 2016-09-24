@@ -23,7 +23,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+  /*$httpProvider.defaults.headers.post['Authorization'] = 'Bearer dAYYVFSe3iCEgLGF5gGPDEajpMH2NU';
+  $httpProvider.defaults.headers.post['Content-Type'] = 'multipart/form-data';*/
+        
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -35,7 +38,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html'
+    templateUrl: 'templates/tabs.html',
+    controller: 'PhotoCtrl'
   })
 
   // Each tab has its own nav history stack:
@@ -45,10 +49,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     views: {
       'tab-photo': {
         templateUrl: 'templates/tab-photo.html',
-        controller: 'PhotoCtrl'
       }
     }
   })
+        
+  .state('tab.tagselect', {
+         url: '/tagselect',
+         reload: false,
+     views: {
+         'tab-tagselect' :{
+             templateUrl: 'templates/tab-tagselect.html'
+         }
+     }
+      
+   })
 
   .state('tab.languages', {
       url: '/languages',
@@ -56,15 +70,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         'tab-languages': {
           templateUrl: 'templates/tab-languages.html',
           controller: 'LanguagesCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
         }
       }
     })
