@@ -7,8 +7,8 @@
                 </div>
                 <ion-list ng-repeat="card in deck">
                     <div class="card">
-                        <div class="item item-text-wrap">
-                            {{ card.english }} , {{ card.translated }}
+                        <div class="item item-text-wrap" on-tap="showTrans=!showTrans">
+                          <span ng-show="showTrans"> {{ card.english }} </span> <span ng-show="!showTrans"><strong>{{ card.translated }}</strong></span>
                         </div>
                     </div>
                 </ion-list>

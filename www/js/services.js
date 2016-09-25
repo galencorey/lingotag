@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('TagsFactory', function($http) {
+.factory('TagsFactory', function($http, $rootScope) {
     
     var TagsFactory = {};
          
@@ -24,11 +24,12 @@ angular.module('starter.services', [])
          
     TagsFactory.translateTags = function(tags, lan){
          
+         var language = $rootScope.language || 'de';
          var tags = tags.join(', ');
          var url = 'https://www.googleapis.com/language/translate/v2?';
          url += 'key=' + secrets.Google;
          url += '&q=' + tags;
-         url += '&source=en&target=es';
+         url += '&source=en&target=' + language;
 
          return $http.get(url)
          .then(function(response){
