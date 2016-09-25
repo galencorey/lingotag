@@ -6,7 +6,6 @@ angular.module('starter.services', [])
          
     TagsFactory.getTags = function(img){
          var url = 'https://api.clarifai.com/v1/tag/';
-
          return $http({
                method: 'POST',
                url: url,
@@ -38,5 +37,33 @@ angular.module('starter.services', [])
     }
          
     return TagsFactory;
+         
+})
+
+.factory('StorageFactory', function($q){
+         
+         var StorageFactory = {};
+         var i = 0;
+         
+         StorageFactory.addCards = function(cards){
+            cards = JSON.stringify(cards);
+            localStorage.setItem(i.toString(), cards);
+            i++;
+         
+//             cards.forEach(function(card){
+//               localStorage.setItem(i.toString(), JSON.stringify(card));
+//                i++;
+//             })
+         }
+         
+         StorageFactory.getAll = function(){
+            var promises = [];
+            for (var k = 0; k < localStorage.length; k++){
+                promises.push(localStorage.getItem(k.toString()));
+            }
+         
+            return promises.map(function(elem){return JSON.parse(elem)});
+         }
+         return StorageFactory;
          
 });

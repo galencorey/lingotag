@@ -8,11 +8,11 @@
         
         <div>
             <ion-list>
-                 <ion-checkbox ng-model="choice" ng-repeat="tag in tags" on-tap="selectTag()" on-swipe-left="showTrans=true" on-swipe-right="showTrans=false">
+                 <ion-checkbox ng-model="choice" ng-repeat="tag in tags" on-tap="selectTag(tag)" on-swipe-left="showTrans=true" on-swipe-right="showTrans=false">
                      <strong> {{ tag.translated }}</strong><span ng-show="showTrans">: {{ tag.english }} </span>
                  </ion-checkbox>
              </ion-list>
         </div>
-        <button class="button button-calm button-full" ng-click="createCards()"> Generate Cards </button>
+        <button class="button button-calm button-full" ng-click="createCard()"> Generate Card </button>
     </ion-content>
 </ion-view>
