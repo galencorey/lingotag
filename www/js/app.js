@@ -82,7 +82,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'CardsCtrl'
       }
     }
-  });
+  })
+       
+    .state('tab.set', {
+       url: '/set',
+       views: {
+           'tab-set': {
+           templateUrl: 'templates/tab-set.html',
+           controller: 'CardsCtrl'
+       }
+       }
+   });
+    
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/languages');

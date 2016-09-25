@@ -19,7 +19,7 @@ angular.module('starter.controllers', [])
         $state.reload();
         $scope.imgData = imgURI;
         $scope.pictureTaken = true;
-        navigator.camera.cleanup();
+        // navigator.camera.cleanup();
     }
             
     function onFail(message) {
@@ -73,7 +73,12 @@ angular.module('starter.controllers', [])
 .controller('CardsCtrl', function($scope, StorageFactory) {
         $scope.cards = StorageFactory.getAll();
         $scope.storage = localStorage;
+            
         $scope.$on('$ionicView.enter', function(e) {
             $scope.digest();
         });
+            
+//        $scope.viewSet = function(){
+//            $state.go('tab.languages', {location: false});
+//        }
 });

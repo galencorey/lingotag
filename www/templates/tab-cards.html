@@ -1,7 +1,18 @@
 <ion-view view-title="Cards">
     <ion-content>
-        <ion-list>
-            {{ cards }} 
+        <ion-list ng-repeat="deck in cards">
+            <div class="card">
+                <div class="item item-text-wrap">
+                    Deck #{{ $index + 1 }}
+                </div>
+                <ion-list ng-repeat="card in deck">
+                    <div class="card">
+                        <div class="item item-text-wrap">
+                            {{ card.english }} , {{ card.translated }}
+                        </div>
+                    </div>
+                </ion-list>
+            </div>
         </ion-list>
     </ion-content>
 </ion-view>
