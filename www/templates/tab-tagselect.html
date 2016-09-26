@@ -1,0 +1,18 @@
+<ion-view view-title="LingoTag">
+    <ion-content class="padding" has-bouncing="false">
+        
+        <div class="item item-thumbnail-left">
+            <img ng-src="{{src}}">
+                <h2 class="wrap"><strong>Select the tags that best <br> describe this image</strong><br>(swipe left for translation):</h2>
+        </div>
+        
+        <div>
+            <ion-list>
+                 <ion-checkbox ng-model="choice" ng-repeat="tag in tags" on-tap="selectTag(tag)" on-swipe-left="showTrans=true" on-swipe-right="showTrans=false">
+                     <strong> {{ tag.translated }}</strong><span ng-show="showTrans">: {{ tag.english }} </span>
+                 </ion-checkbox>
+             </ion-list>
+        </div>
+        <button class="button button-calm button-full" ng-click="createCard()"> Generate Card </button>
+    </ion-content>
+</ion-view>
