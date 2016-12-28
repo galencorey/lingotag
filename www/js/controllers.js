@@ -8,11 +8,11 @@ angular.module('starter.controllers', [])
     $scope.isError = false;
     $scope.selectedTags = [];
 
-
-    $scope.takePhoto = function(){
+    $scope.$on('$ionicView.enter', function(e) {
+      if (!$scope.pictureTaken){
         navigator.camera.getPicture(onSuccess, onFail, {destinationType: Camera.DestinationType.DATA_URL});
-
-    }
+      }
+    });
 
     function onSuccess(imgURI){
       console.log("successsssssssssss")
