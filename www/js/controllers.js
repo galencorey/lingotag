@@ -7,29 +7,32 @@ angular.module('starter.controllers', [])
     $scope.pictureTaken = false;
     $scope.isError = false;
     $scope.selectedTags = [];
-            
-            
+
+
     $scope.takePhoto = function(){
         navigator.camera.getPicture(onSuccess, onFail, {destinationType: Camera.DestinationType.DATA_URL});
-           
+
     }
 
     function onSuccess(imgURI){
+      console.log("successsssssssssss")
         $scope.src = "data:image/gif;base64," + imgURI;
         $state.reload();
         $scope.imgData = imgURI;
         $scope.pictureTaken = true;
         // navigator.camera.cleanup();
     }
-            
+
     function onFail(message) {
         alert('Failed because: ' + message);
     }
-            
-            
+
+
     $scope.showTags = function(){
+        console.log("im gonna try to get some tags now")
         TagsFactory.getTags($scope.imgData)
         .then(function(tags){
+          console.log('got some nice tags ', tags)
               $scope.tags = tags.slice(0,7);
               return TagsFactory.translateTags($scope.tags)
         })
@@ -47,11 +50,11 @@ angular.module('starter.controllers', [])
                $scope.error = err;
         })
     }
-            
+
     $scope.selectTag = function(tag){
         $scope.selectedTags.push(tag);
     }
-         
+
     $scope.createCard = function(){
         StorageFactory.addCards($scope.selectedTags);
         $state.go('tab.cards');
@@ -66,7 +69,7 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-            
+
         $scope.changeLang = function (language){
             $rootScope.language = language;
         }
@@ -77,12 +80,12 @@ angular.module('starter.controllers', [])
 .controller('CardsCtrl', function($scope, StorageFactory) {
         $scope.cards = StorageFactory.getAll();
         $scope.storage = localStorage;
-        $scope.showTrans = false; 
-            
+        $scope.showTrans = false;
+
         $scope.$on('$ionicView.enter', function(e) {
             $scope.digest();
         });
-            
+
 //        $scope.viewSet = function(){
 //            $state.go('tab.languages', {location: false});
 //        }
