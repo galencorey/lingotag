@@ -16,7 +16,7 @@ This app is the brainchild of @galencorey and @verasveras.
 
 #### What does it look like? 
 Great question! Here are some screenshots. 
-![LingoTag Screenshot](resources/screenshot1.png)
-![LingoTag Screenshot](resources/screenshot2.png)
-![LingoTag Screenshot](resources/screenshot3.png)
+![LingoTag Screenshot](resources/screenshot1.PNG)
+![LingoTag Screenshot](resources/screenshot2.PNG)
+![LingoTag Screenshot](resources/screenshot3.PNG)
 
