@@ -57,7 +57,7 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
         } else if (user) {
           // user authenticated with Firebase
           $rootScope.userEmail = user.email;
-          $window.location.href = ('#/bucket/list');
+          $window.location.href = ('#/languages');
         } else {
           // user is logged out
           $rootScope.userEmail = null;

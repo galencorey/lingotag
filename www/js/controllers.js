@@ -20,7 +20,7 @@ angular.module('starter.controllers', [])
           if (!error) {
             $rootScope.hide();
             $rootScope.userEmail = user.email;
-            $window.location.href = ('#/bucket/list');
+            $window.location.href = ('#/languages');
           }
           else {
             $rootScope.hide();
