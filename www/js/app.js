@@ -90,6 +90,30 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
 
   // Each tab has its own nav history stack:
 
+    .state('auth', {
+      url: "/auth",
+      abstract: true,
+      templateUrl: "templates/auth.html"
+    })
+    .state('auth.signin', {
+      url: '/signin',
+      views: {
+        'auth-signin': {
+          templateUrl: 'templates/auth-signin.html',
+          controller: 'SignInCtrl'
+        }
+      }
+    })
+    .state('auth.signup', {
+      url: '/signup',
+      views: {
+        'auth-signup': {
+          templateUrl: 'templates/auth-signup.html',
+          controller: 'SignUpCtrl'
+        }
+      }
+    })
+
   .state('tab.photo', {
     url: '/photo',
     views: {
@@ -132,6 +156,6 @@ angular.module('starter', ['ionic', 'firebase', 'starter.controllers', 'starter.
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/languages');
+  $urlRouterProvider.otherwise('/auth/signin');
 
 });
